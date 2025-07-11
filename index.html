@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- 设置页面字符集为UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- 设置视口以适应移动端设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 页面标题 -->
+    <title>MindLeap实景3D建模</title>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 整体容器 -->
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <!-- logo区域 -->
+            <div class="logo">MindLeap</div>
+            <div class="logo">3DLabs</div>
+            <!-- 菜单列表 -->
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item active" data-page="capturesPage">我的3D资产</li>
+                    <li class="menu-item" data-page="explorePage">探索&发现</li>
+                    <li class="menu-item" data-page="collectPage">数据采集交流区</li>
+                    <li class="menu-item" data-page="settingsPage">设置</li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- 主内容区 -->
+        <div class="main">
+            <!-- 顶部导航栏 -->
+            <header class="topbar">
+                <!-- 用户头像和名称 -->
+                <div class="user-info" id="userInfo">
+                    <img src="https://i.pravatar.cc/40" alt="头像" class="avatar" id="userAvatar" style="display:none;">
+                    <span class="username" id="userName" style="display:none;"></span>
+                    <!-- 登录/注册按钮，未登录时显示 -->
+                    <button class="login-btn" id="loginBtn">登录/注册</button>
+                    <!-- 退出按钮，登录后显示 -->
+                    <button class="logout-btn" id="logoutBtn" style="display:none;">退出</button>
+                </div>
+                <!-- 新建按钮 -->
+                <button class="new-btn">+ 新建</button>
+            </header>
+            <!-- 内容展示区 -->
+            <section class="content">
+                <!-- 捕捉内容页面 -->
+                <div class="page" id="capturesPage">
+                    <!-- 页面标题 -->
+                    <h1 class="page-title">我的3D资产</h1>
+                    <!-- 卡片列表 -->
+                    <div class="card-list" id="cardList">
+                        <!-- 卡片内容由JS动态生成 -->
+                    </div>
+                </div>
+                
+                <!-- 探索页面 -->
+                <div class="page" id="explorePage" style="display: none;">
+                    <!-- 页面标题 -->
+                    <h1 class="page-title">探索&发现</h1>
+                    <!-- 搜索栏 -->
+                    <div class="search-bar">
+                        <input type="text" placeholder="搜索3D模型..." id="searchInput">
+                        <button class="search-btn">搜索</button>
+                    </div>
+                    <!-- 分类标签 -->
+                    <div class="category-tags">
+                        <span class="tag active">全部</span>
+                        <span class="tag">建筑</span>
+                        <span class="tag">人物</span>
+                        <span class="tag">动物</span>
+                        <span class="tag">车辆</span>
+                        <span class="tag">自然</span>
+                    </div>
+                    <!-- 公开展示卡片列表 -->
+                    <div class="card-list" id="exploreCardList">
+                        <!-- 公开展示内容由JS动态生成 -->
+                    </div>
+                </div>
+                
+                <!-- 设置页面 -->
+                <div class="page" id="settingsPage" style="display: none;">
+                    <!-- 页面标题 -->
+                    <h1 class="page-title">设置</h1>
+                    <!-- 设置内容 -->
+                    <div class="settings-content">
+                        <p>设置页面内容待开发...</p>
+                    </div>
+                </div>
+                
+                <!-- 数据采集页面 -->
+                <div class="page" id="collectPage" style="display: none;">
+                    <!-- 页面标题 -->
+                    <h1 class="page-title">数据采集交流区</h1>
+                    <!-- 教程超链接列表 -->
+                    <ul class="tutorial-list">
+                        <li><a href="https://www.runoob.com/python3/python3-data-collection.html" target="_blank">Python3 数据采集基础教程</a></li>
+                        <li><a href="https://cuiqingcai.com/1052.html" target="_blank">Python爬虫入门教程</a></li>
+                        <li><a href="https://www.cnblogs.com/feffery/p/16396413.html" target="_blank">用requests和BeautifulSoup采集网页数据</a></li>
+                        <li><a href="https://zhuanlan.zhihu.com/p/35046033" target="_blank">数据采集常见反爬虫与应对方法</a></li>
+                        <li><a href="https://developer.aliyun.com/article/771063" target="_blank">数据采集实战案例</a></li>
+                    </ul>
+                </div>
+            </section>
+            <footer>
+                <!-- 版权信息 -->
+                <p>&copy; 2025 北京智合伟业智能科技有限公司保留所有权利;京ICP备2025121801号</p>
+            </footer>
+        </div>
+    </div>
+    <!-- 登录/注册弹窗 -->
+    <div class="modal" id="loginModal" style="display:none;">
+        <div class="modal-mask"></div>
+        <div class="modal-content">
+            <!-- 关闭按钮 -->
+            <span class="modal-close" id="modalClose">×</span>
+            <!-- tab切换 -->
+            <div class="modal-tabs">
+                <span class="modal-tab active" data-tab="wechat">微信登录</span>
+                <span class="modal-tab" data-tab="account">账号登录</span>
+                <span class="modal-tab" data-tab="register">注册</span>
+            </div>
+            <!-- 微信登录tab -->
+            <div class="modal-panel" id="wechatPanel">
+                <button class="wechat-login-btn" id="wechatLoginBtn">使用微信登录</button>
+                <p class="modal-tip">（演示用，点击即登录成功）</p>
+            </div>
+            <!-- 账号登录tab -->
+            <div class="modal-panel" id="accountPanel" style="display:none;">
+                <input type="text" id="loginUsername" placeholder="用户名" class="modal-input">
+                <input type="password" id="loginPassword" placeholder="密码" class="modal-input">
+                <button class="modal-action-btn" id="accountLoginBtn">登录</button>
+            </div>
+            <!-- 注册tab -->
+            <div class="modal-panel" id="registerPanel" style="display:none;">
+                <input type="text" id="registerUsername" placeholder="用户名" class="modal-input">
+                <input type="password" id="registerPassword" placeholder="密码" class="modal-input">
+                <button class="modal-action-btn" id="registerBtn">注册</button>
+            </div>
+        </div>
+    </div>
+    <!-- 在body底部引入JS -->
+    <script src="script2.js"></script>
+</body>
+</html> 

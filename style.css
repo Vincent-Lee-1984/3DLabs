@@ -1,0 +1,586 @@
+/* 设置全局字体和背景色 */
+body {
+    /* 使用无衬线字体 */
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    /* 设置背景色为深色 */
+    background: #0a0a0a;
+    /* 去除默认外边距 */
+    margin: 0;
+    /* 去除默认内边距 */
+    padding: 0;
+    /* 文字颜色为浅色 */
+    color: #e1e5e9;
+}
+
+/* 整体容器采用flex布局 */
+.container {
+    /* 横向排列 */
+    display: flex;
+    /* 占满整个视口高度 */
+    height: 100vh;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    /* 固定宽度 */
+    width: 220px;
+    /* 背景色为更深的暗色 */
+    background: #111111;
+    /* 文字颜色为白色 */
+    color: #fff;
+    /* 垂直排列内容 */
+    display: flex;
+    /* 纵向排列 */
+    flex-direction: column;
+    /* 顶部对齐 */
+    align-items: flex-start;
+    /* 添加内边距 */
+    padding: 32px 0 0 0;
+    /* 右侧边框 */
+    border-right: 1px solid #1a1a1a;
+}
+
+/* logo区域样式 */
+.logo {
+    /* 字体加粗 */
+    font-weight: bold;
+    /* 字体大小 */
+    font-size: 24px;
+    /* 左侧内边距 */
+    padding-left: 32px;
+    /* 下方间距 */
+    margin-bottom: 0px;
+}
+
+/* 菜单样式 */
+.menu ul {
+    /* 去除列表默认样式 */
+    list-style: none;
+    /* 去除内外边距 */
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    /* 字体大小 */
+    font-size: 18px;
+    /* 上下内边距 */
+    padding: 16px 32px;
+    /* 鼠标悬停时显示手型 */
+    cursor: pointer;
+    /* 圆角 */
+    border-radius: 8px 0 0 8px;
+    /* 过渡动画 */
+    transition: background 0.2s;
+}
+.menu li.active, .menu li:hover {
+    /* 激活或悬停时背景色 */
+    background: #1a1a1a;
+}
+
+/* 主内容区样式 */
+.main {
+    /* 占据剩余空间 */
+    flex: 1;
+    /* 垂直排列 */
+    display: flex;
+    /* 纵向排列 */
+    flex-direction: column;
+}
+
+/* 顶部导航栏样式 */
+.topbar {
+    /* 高度 */
+    height: 64px;
+    /* 背景色为暗色 */
+    background: #111111;
+    /* 左右内边距 */
+    padding: 0 32px;
+    /* 底部阴影 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    /* 横向排列 */
+    display: flex;
+    /* 垂直居中 */
+    align-items: center;
+    /* 主轴两端对齐 */
+    justify-content: space-between;
+    /* 底部边框 */
+    border-bottom: 1px solid #1a1a1a;
+}
+
+/* 用户信息区域 */
+.user-info {
+    /* 横向排列 */
+    display: flex;
+    /* 垂直居中 */
+    align-items: center;
+}
+.avatar {
+    /* 头像为圆形 */
+    border-radius: 50%;
+    /* 固定宽高 */
+    width: 40px;
+    height: 40px;
+    /* 右侧间距 */
+    margin-right: 12px;
+}
+.username {
+    /* 字体大小 */
+    font-size: 16px;
+    /* 字体颜色 */
+    color: #e1e5e9;
+}
+
+/* 新建按钮样式 */
+.new-btn {
+    /* 背景色为主色调 */
+    background: #4f8cff;
+    /* 文字颜色为白色 */
+    color: #fff;
+    /* 去除边框 */
+    border: none;
+    /* 圆角 */
+    border-radius: 6px;
+    /* 内边距 */
+    padding: 10px 20px;
+    /* 字体大小 */
+    font-size: 16px;
+    /* 鼠标悬停时显示手型 */
+    cursor: pointer;
+    /* 过渡动画 */
+    transition: background 0.2s;
+}
+.new-btn:hover {
+    /* 悬停时颜色加深 */
+    background: #2563eb;
+}
+
+/* 内容区样式 */
+.content {
+    /* 占据剩余空间 */
+    flex: 1;
+    /* 滚动条 */
+    overflow-y: auto;
+    /* 上下左右内边距 */
+    padding: 32px;
+}
+
+/* 卡片列表布局 */
+.card-list {
+    /* 使用grid布局 */
+    display: grid;
+    /* 每行最多4列，最小宽度240px */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    /* 列间距 */
+    gap: 24px;
+}
+
+/* 单个卡片样式 */
+.card {
+    /* 背景色为暗色 */
+    background: #111111;
+    /* 圆角 */
+    border-radius: 12px;
+    /* 阴影效果 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    /* 内边距 */
+    padding: 20px;
+    /* 过渡动画 */
+    transition: box-shadow 0.2s;
+    /* 鼠标悬停时显示手型 */
+    cursor: pointer;
+    /* 垂直排列内容 */
+    display: flex;
+    /* 纵向排列 */
+    flex-direction: column;
+    /* 高度自适应 */
+    min-height: 180px;
+    /* 边框 */
+    border: 1px solid #1a1a1a;
+}
+.card:hover {
+    /* 悬停时阴影加深 */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    /* 悬停时边框颜色 */
+    border-color: #4f8cff;
+}
+
+/* 卡片图片样式 */
+.card-img {
+    /* 宽度100% */
+    width: 100%;
+    /* 高度160px */
+    height: 160px;
+    /* 保持图片比例并裁剪 */
+    object-fit: cover;
+    /* 圆角 */
+    border-radius: 8px;
+    /* 下方间距 */
+    margin-bottom: 12px;
+}
+
+/* 卡片标题样式 */
+.card-title {
+    /* 字体加粗 */
+    font-weight: bold;
+    /* 字体大小 */
+    font-size: 18px;
+    /* 下方间距 */
+    margin-bottom: 8px;
+    /* 文字颜色 */
+    color: #e1e5e9;
+}
+
+/* 卡片描述样式 */
+.card-desc {
+    /* 字体大小 */
+    font-size: 14px;
+    /* 颜色为浅灰色 */
+    color: #a0aec0;
+    /* 行高 */
+    line-height: 1.5;
+}
+
+/* 页面标题样式 */
+.page-title {
+    /* 字体大小 */
+    font-size: 28px;
+    /* 字体加粗 */
+    font-weight: bold;
+    /* 颜色 */
+    color: #e1e5e9;
+    /* 下方间距 */
+    margin-bottom: 24px;
+}
+
+/* 搜索栏样式 */
+.search-bar {
+    /* 横向排列 */
+    display: flex;
+    /* 下方间距 */
+    margin-bottom: 24px;
+    /* 最大宽度 */
+    max-width: 400px;
+}
+.search-bar input {
+    /* 占据剩余空间 */
+    flex: 1;
+    /* 高度 */
+    height: 40px;
+    /* 内边距 */
+    padding: 0 16px;
+    /* 边框 */
+    border: 1px solid #1a1a1a;
+    /* 圆角 */
+    border-radius: 6px 0 0 6px;
+    /* 字体大小 */
+    font-size: 14px;
+    /* 去除轮廓 */
+    outline: none;
+    /* 背景色 */
+    background: #0a0a0a;
+    /* 文字颜色 */
+    color: #e1e5e9;
+}
+.search-bar input:focus {
+    /* 聚焦时边框颜色 */
+    border-color: #4f8cff;
+}
+.search-btn {
+    /* 背景色 */
+    background: #1a1a1a;
+    /* 文字颜色 */
+    color: #fff;
+    /* 去除边框 */
+    border: none;
+    /* 内边距 */
+    padding: 0 20px;
+    /* 圆角 */
+    border-radius: 0 6px 6px 0;
+    /* 字体大小 */
+    font-size: 14px;
+    /* 鼠标悬停时显示手型 */
+    cursor: pointer;
+    /* 过渡动画 */
+    transition: background 0.2s;
+}
+.search-btn:hover {
+    /* 悬停时颜色加深 */
+    background: #2563eb;
+}
+
+/* 分类标签样式 */
+.category-tags {
+    /* 下方间距 */
+    margin-bottom: 24px;
+    /* 横向排列 */
+    display: flex;
+    /* 换行 */
+    flex-wrap: wrap;
+    /* 间距 */
+    gap: 12px;
+}
+.tag {
+    /* 内边距 */
+    padding: 8px 16px;
+    /* 背景色 */
+    background: #1a1a1a;
+    /* 文字颜色 */
+    color: #a0aec0;
+    /* 圆角 */
+    border-radius: 20px;
+    /* 字体大小 */
+    font-size: 14px;
+    /* 鼠标悬停时显示手型 */
+    cursor: pointer;
+    /* 过渡动画 */
+    transition: all 0.2s;
+}
+.tag.active, .tag:hover {
+    /* 激活或悬停时背景色 */
+    background: #4f8cff;
+    /* 激活或悬停时文字颜色 */
+    color: #fff;
+}
+
+/* 公开展示卡片特殊样式 */
+.explore-card {
+    /* 位置相对 */
+    position: relative;
+}
+.explore-card .card-author {
+    /* 字体大小 */
+    font-size: 12px;
+    /* 颜色 */
+    color: #718096;
+    /* 上方间距 */
+    margin-top: 8px;
+}
+.explore-card .card-stats {
+    /* 字体大小 */
+    font-size: 12px;
+    /* 颜色 */
+    color: #718096;
+    /* 上方间距 */
+    margin-top: 4px;
+}
+
+/* 页脚样式 */
+footer {
+    /* 背景色 */
+    background: #111111;
+    /* 内边距 */
+    padding: 20px 32px;
+    /* 文字居中 */
+    text-align: center;
+    /* 字体大小 */
+    font-size: 14px;
+    /* 颜色 */
+    color: #a0aec0;
+    /* 边框顶部 */
+    border-top: 1px solid #1a1a1a;
+}
+footer p {
+    /* 去除默认外边距 */
+    margin: 5px 0;
+}
+
+/* 数据采集教程列表样式 */
+.tutorial-list {
+    /* 去除默认列表样式 */
+    list-style: none;
+    /* 左侧内边距 */
+    padding-left: 0;
+    /* 最大宽度 */
+    max-width: 600px;
+}
+.tutorial-list li {
+    /* 下方间距 */
+    margin-bottom: 16px;
+}
+.tutorial-list a {
+    /* 字体大小 */
+    font-size: 16px;
+    /* 文字颜色 */
+    color: #4f8cff;
+    /* 去除下划线 */
+    text-decoration: none;
+    /* 过渡动画 */
+    transition: color 0.2s;
+}
+.tutorial-list a:hover {
+    /* 悬停时颜色加深 */
+    color: #63b3ed;
+    /* 添加下划线 */
+    text-decoration: underline;
+} 
+/* 页脚样式 */
+footer {
+    text-align: center; /* 文字居中 */
+    padding: 20px; /* 内边距 */
+    background: rgba(11, 11, 11, 0); /* 黑色背景 */
+    border-radius: 10px; /* 圆角 */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+}
+
+/* 页脚文字样式 */
+footer p {
+    color: #989696; /* 字体颜色 */
+    font-size: 0.9rem; /* 字体大小 */
+    margin: 0; /* 无外边距 */
+}
+
+/* 登录/注册弹窗整体样式 */
+.modal {
+    /* 固定定位，覆盖全屏 */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    /* 居中显示内容 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-mask {
+    /* 半透明黑色遮罩 */
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+}
+.modal-content {
+    /* 弹窗内容区域 */
+    position: relative;
+    background: #181c24;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.7);
+    padding: 32px 32px 24px 32px;
+    min-width: 340px;
+    z-index: 1;
+    color: #e1e5e9;
+}
+.modal-close {
+    /* 关闭按钮 */
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 24px;
+    color: #a0aec0;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.modal-close:hover {
+    color: #4f8cff;
+}
+.modal-tabs {
+    /* tab切换栏 */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #23283a;
+}
+.modal-tab {
+    /* 单个tab */
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #a0aec0;
+    cursor: pointer;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-bottom: 2px solid transparent;
+}
+.modal-tab.active {
+    /* 激活tab */
+    color: #4f8cff;
+    border-bottom: 2px solid #4f8cff;
+}
+.modal-panel {
+    /* tab内容面板 */
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wechat-login-btn {
+    /* 微信登录按钮 */
+    background: #09bb07;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 32px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.wechat-login-btn:hover {
+    background: #07a206;
+}
+.modal-tip {
+    /* 提示文字 */
+    color: #a0aec0;
+    font-size: 13px;
+    margin-top: 0;
+}
+.modal-input {
+    /* 输入框样式 */
+    width: 220px;
+    height: 40px;
+    margin-bottom: 16px;
+    padding: 0 12px;
+    border: 1px solid #23283a;
+    border-radius: 6px;
+    background: #23283a;
+    color: #e1e5e9;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s;
+}
+.modal-input:focus {
+    border-color: #4f8cff;
+}
+.modal-action-btn {
+    /* 登录/注册按钮 */
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 32px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+.modal-action-btn:hover {
+    background: #2563eb;
+}
+.login-btn {
+    /* 顶部登录按钮 */
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: background 0.2s;
+}
+.login-btn:hover {
+    background: #2563eb;
+}
+.logout-btn {
+    /* 顶部退出按钮 */
+    background: #23283a;
+    color: #a0aec0;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: background 0.2s;
+}
+.logout-btn:hover {
+    background: #393e4f;
+    color: #fff;
+}
